@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "typeRoots": ["./node_modules/@types"],
+    "noEmitOnError": false,
+    "strict": true
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "**/*.test.ts"]
+} 

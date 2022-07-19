@@ -6,7 +6,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 module.exports = {
   mode: 'development',
   entry: {
-    'app': './src/app.js'
+    'app': './src/app.ts'
   },
   output: {
     path: path.resolve(__dirname, '../dist/js'),
@@ -18,6 +18,13 @@ module.exports = {
       {
         test: /\.vue$/,
         use: 'vue-loader'
+      },
+      {
+        test: /\.ts$/,
+        loader: 'ts-loader',
+        options: {
+          appendTsSuffixTo: [/\.vue$/]
+        }
       }
     ]
   },

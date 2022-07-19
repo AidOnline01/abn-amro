@@ -4,17 +4,15 @@
 
     <br>
 
-    <button @click="count++">Click me</button>
+    <button @click="incrementCount()">Click me</button>
   </div>
 </template>
 
-<script>
-  export default {
-    name: 'App',
-    data() {
-      return {
-        count: 0
-      }
-    }
-  }
+<script setup lang="ts">
+  import { ref } from 'vue'
+
+  const count = ref(0)
+  const name = ref('Hello World')
+
+  const incrementCount = () => count.value++
 </script>
