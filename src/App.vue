@@ -1,10 +1,10 @@
 <template>
-  <div>
+  <div class="home">
     Home <span>{{count}}</span>
 
     <br>
 
-    <button @click="incrementCount()">Click me</button>
+    <button class="button" @click="incrementCount()">Click me</button>
   </div>
 </template>
 
@@ -18,3 +18,12 @@
     count.value += 1;
   };
 </script>
+
+<style lang="scss" scoped>
+  .home {
+    .button {
+      color: red;
+      background: blue;
+    }
+  }
+</style>
