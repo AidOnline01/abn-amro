@@ -1,42 +1,51 @@
-const path = require('path')
-const { VueLoaderPlugin } = require('vue-loader')
-const CopyPlugin = require('copy-webpack-plugin')
+const path = require('path');
+const { VueLoaderPlugin } = require('vue-loader');
+const CopyPlugin = require('copy-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const EslintPlugin = require('eslint-webpack-plugin');
 
 module.exports = {
   mode: 'development',
   entry: {
-    'app': './src/app.ts'
+    app: './src/app.ts',
   },
   output: {
     path: path.resolve(__dirname, '../dist/js'),
     filename: '[name].js',
-    publicPath: '/js'
+    publicPath: '/js',
   },
   module: {
     rules: [
       {
         test: /\.vue$/,
-        use: 'vue-loader'
+        use: 'vue-loader',
       },
       {
         test: /\.ts$/,
         loader: 'ts-loader',
         options: {
-          appendTsSuffixTo: [/\.vue$/]
-        }
-      }
-    ]
+          appendTsSuffixTo: [/\.vue$/],
+        },
+      },
+    ],
   },
   plugins: [
     new CleanWebpackPlugin({
-      cleanOnceBeforeBuildPatterns: [path.resolve(__dirname, '../dist')]
+      cleanOnceBeforeBuildPatterns: [path.resolve(__dirname, '../dist')],
     }),
     new VueLoaderPlugin(),
     new CopyPlugin({
       patterns: [
-        { from: path.resolve(__dirname, '../public'), to: path.resolve(__dirname, '../dist') }
-      ]
-    })
-  ]
-}
+        { from: path.resolve(__dirname, '../public'), to: path.resolve(__dirname, '../dist') },
+      ],
+    }),
+    new EslintPlugin({
+      context: '../',
+      emitError: true,
+      emitWarning: true,
+      failOnError: true,
+      extensions: ['ts', 'tsx'],
+      overrideConfigFile: path.resolve(__dirname, '../.eslintrc.json'),
+    }),
+  ],
+};

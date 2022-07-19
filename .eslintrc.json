@@ -1,0 +1,22 @@
+{
+  "extends": [
+    "plugin:vue/essential",
+    "@vue/airbnb",
+    "@vue/typescript/recommended"
+  ],
+  "rules": {
+    "vue/script-indent": ["error", 2, { "baseIndent": 1 }]
+  },
+  "parserOptions": {
+    "project": "./tsconfig.json",
+    "extraFileExtensions": [".vue"]
+  },
+  "overrides": [
+    {
+      "files": ["*.vue"],
+      "rules": {
+        "indent": "off"
+      }
+    }
+  ]
+}

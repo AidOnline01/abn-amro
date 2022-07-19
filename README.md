@@ -14,4 +14,10 @@
 Docker is used to ensure that all the team member will be able to quickly setup project locally, and to be confident that we have the same environment and packages.
 
 ## Webpack
-Webpack is used to bundle the project, proccess and optimize assests, compile Typescript and Vue to javascript consumed by browser. 
+Webpack is used to bundle the project, proccess and optimize assests, compile Typescript and Vue to javascript consumed by browser.
+
+## Typescript
+Typescript is used to prevent typing error, and enforce better self-documenting code.
+
+## Eslint
+Eslint is used to enforce same code style across the project.

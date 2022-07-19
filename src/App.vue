@@ -9,10 +9,12 @@
 </template>
 
 <script setup lang="ts">
-  import { ref } from 'vue'
+  import { ref } from 'vue';
 
-  const count = ref(0)
-  const name = ref('Hello World')
+  const count = ref(0);
+  const name = ref('Hello World');
 
-  const incrementCount = () => count.value++
+  const incrementCount = () => {
+    count.value += 1;
+  };
 </script>
