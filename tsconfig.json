@@ -13,7 +13,8 @@
     "module": "esnext",
     "jsx": "preserve",
     "moduleResolution": "node",
-    "importHelpers": true
+    "importHelpers": true,
+    "importsNotUsedAsValues": "error"
   },
   "include": ["src/**/*.ts", "src/**/*.vue", "src/**/*.json"],
   "exclude": ["node_modules", "**/*.test.ts"]
