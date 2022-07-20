@@ -9,6 +9,9 @@ module.exports = {
   entry: {
     app: './src/app.ts',
   },
+  devServer: {
+    historyApiFallback: true,
+  },
   output: {
     path: path.resolve(__dirname, '../dist/js'),
     filename: '[name].js',

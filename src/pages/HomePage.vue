@@ -4,7 +4,7 @@
 
     <br>
 
-    {{name}}
+    <router-link to="/movie">{{name}}</router-link>
 
     <button class="button" @click="incrementCount()">Click me</button>
   </div>
@@ -14,7 +14,7 @@
   import { ref } from 'vue';
 
   const count = ref(0);
-  const name = ref('Hello World');
+  const name = ref('Shrek');
 
   const incrementCount = () => {
     count.value += 1;
