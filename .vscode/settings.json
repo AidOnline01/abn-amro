@@ -1,0 +1,11 @@
+{
+  "path-autocomplete.extensionOnImport": true,
+  "path-autocomplete.excludedItems": {
+    "**/*.js": {"when": "**"},
+    "**/*.ts": {"when": "**"}
+  },
+  "path-autocomplete.pathMappings": {
+    "@": "${folder}/src"
+},
+"typescript.tsdk": "node_modules/typescript/lib"
+}

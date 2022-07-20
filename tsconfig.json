@@ -1,9 +1,19 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
     "typeRoots": ["./node_modules/@types"],
     "noEmitOnError": false,
-    "strict": true
+    "strict": false,
+    "paths": {
+      "@/*": ["src/*"]
+    },
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "target": "esnext",
+    "module": "commonjs",
+    "jsx": "preserve",
+    "moduleResolution": "node"
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*.ts", "src/**/*.vue", "src/**/*.json"],
   "exclude": ["node_modules", "**/*.test.ts"]
 } 

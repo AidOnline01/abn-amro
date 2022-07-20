@@ -1,29 +1,18 @@
 <template>
-  <div class="home">
-    Home <span>{{count}}</span>
-
-    <br>
-
-    <button class="button" @click="incrementCount()">Click me</button>
-  </div>
+  <div><HomePage /></div>
 </template>
 
-<script setup lang="ts">
-  import { ref } from 'vue';
-
-  const count = ref(0);
-  const name = ref('Hello World');
-
-  const incrementCount = () => {
-    count.value += 1;
-  };
+<script lang="ts" setup>
+  import HomePage from '@/pages/HomePage.vue';
 </script>
 
-<style lang="scss" scoped>
-  .home {
-    .button {
-      color: red;
-      background: blue;
-    }
+<style lang="scss">
+  *:before, *:after {
+    box-sizing: border-box;
+  }
+
+  body, html {
+    padding: 0;
+    margin: 0;
   }
 </style>

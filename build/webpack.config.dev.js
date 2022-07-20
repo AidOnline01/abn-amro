@@ -56,4 +56,10 @@ module.exports = {
       overrideConfigFile: path.resolve(__dirname, '../.eslintrc.json'),
     }),
   ],
+  resolve: {
+    extensions: ['.js', '.ts', '.vue', '.json'],
+    alias: {
+      '@': path.resolve(__dirname, '../src'),
+    },
+  },
 };
