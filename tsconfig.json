@@ -9,10 +9,11 @@
     },
     "esModuleInterop": true,
     "resolveJsonModule": true,
-    "target": "esnext",
-    "module": "commonjs",
+    "target": "es5",
+    "module": "esnext",
     "jsx": "preserve",
-    "moduleResolution": "node"
+    "moduleResolution": "node",
+    "importHelpers": true
   },
   "include": ["src/**/*.ts", "src/**/*.vue", "src/**/*.json"],
   "exclude": ["node_modules", "**/*.test.ts"]
