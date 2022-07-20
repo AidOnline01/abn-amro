@@ -4,6 +4,7 @@
     "vue-router": "^4.1.2"
   },
   "devDependencies": {
+    "@babel/core": "^7.18.9",
     "@types/node": "^18.0.6",
     "@typescript-eslint/eslint-plugin": "^5.30.7",
     "@typescript-eslint/parser": "^5.30.7",
@@ -30,10 +31,10 @@
   },
   "name": "abn_movies_app",
   "version": "1.0.0",
-  "main": "index.js",
   "scripts": {
     "build": "webpack --config build/webpack.config.dev.js",
-    "dev": "webpack serve --config build/webpack.config.dev.js"
+    "dev": "webpack serve --config build/webpack.config.dev.js",
+    "lint": "eslint './src/**'"
   },
   "repository": {
     "type": "git",

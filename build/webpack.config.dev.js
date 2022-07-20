@@ -48,12 +48,11 @@ module.exports = {
       ],
     }),
     new EslintPlugin({
-      context: '../',
+      context: path.resolve(__dirname, '../'),
       emitError: true,
       emitWarning: true,
       failOnError: true,
-      extensions: ['ts', 'tsx'],
-      overrideConfigFile: path.resolve(__dirname, '../.eslintrc.json'),
+      extensions: ['ts', 'tsx', 'vue', 'js'],
     }),
   ],
   resolve: {
