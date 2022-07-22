@@ -17,6 +17,6 @@
     "importsNotUsedAsValues": "error",
     "experimentalDecorators": true
   },
-  "include": ["src/**/*.ts", "src/**/*.vue", "src/**/*.json"],
+  "include": ["src/**/*.ts", "src/**/*.vue", "src/**/*.json", "jest.setup.ts", "jest.config.ts"],
   "exclude": ["node_modules", "**/*.test.ts"]
 } 

@@ -42,3 +42,12 @@ To provide better structure and architecture to the app data.
 And to persist some state for page reload. 
 
 **vuex-module-decorators** are used for ensuring typesafety of modules state, mutations, and actions. 
+
+## Vue Test Utils + Jest
+Vue test utils and jest are used for unit testing, to ensure that main functionality of the application is working as expected.
+
+## Nock
+Nock is used to suppress possible Api request over real network. So we have confidence that no external requests are made in tests.
+
+## Axios mock adapter
+Axios mock adapter is used to mock Api request with fake data. Unlike regular jest mocking functionality it is way more flexible

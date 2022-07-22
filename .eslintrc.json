@@ -22,6 +22,12 @@
       "rules": {
         "indent": "off"
       }
+    },
+    {
+      "files": ["*.spec.ts", "jest.setup.ts"],
+      "rules": {
+        "import/no-extraneous-dependencies": "off"
+      }
     }
   ],
   "settings": {

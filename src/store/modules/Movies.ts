@@ -22,7 +22,7 @@ export default class Movies extends VuexModule {
       });
     });
 
-    console.log(map, this.movies);
+    // TODO: sorting
 
     // Object.keys(map).forEach((genre) => {
     //   map[genre] = map[genre].sort((a, b) => a.weight - b.weight);
@@ -34,8 +34,6 @@ export default class Movies extends VuexModule {
   get getGenres(): string[] {
     const genres = [];
 
-    console.log(this.getGenresMovies);
-
     Object.keys(this.getGenresMovies).forEach((genre) => {
       genres.push(genre);
     });
@@ -46,8 +44,6 @@ export default class Movies extends VuexModule {
   @Mutation
   setMovies(movies: Movie[]) {
     this.movies = movies;
-
-    console.log('movies are set');
   }
 
   @Mutation

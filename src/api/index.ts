@@ -1,12 +1,14 @@
 import axios from 'axios';
 
+export const API_URL = 'https://api.tvmaze.com';
+
 export default async function api(
   endpoint: string,
   params: Record<string, unknown> = {},
 ): Promise<unknown> {
   const response = await axios({
     method: 'get',
-    url: `https://api.tvmaze.com/${endpoint}`,
+    url: `${API_URL}/${endpoint}`,
     params,
   });
 

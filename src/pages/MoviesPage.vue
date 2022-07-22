@@ -22,7 +22,7 @@
   import Movies from '@/store/modules/Movies';
   import { useStore } from 'vuex';
   import MoviesCard from '@/components/movies/MoviesCard.vue';
-  import { computed } from 'vue';
+  import { computed, ref } from 'vue';
   import type Movie from '@/types/Movie';
 
   const store = useStore();
