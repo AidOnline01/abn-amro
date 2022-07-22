@@ -8,6 +8,18 @@
 7. Run Webpack Dev Server `npm run dev`
 8. Access website by url `http://localhost:8080` 
 
+# Notice
+
+## Open api problem
+Unfortunatelly the provided open API (http://www.tvmaze.com/api) does not support filtering by rating or genres. There is still open issue (https://www.tvmaze.com/threads/1115/list-of-popular-shows) regarding this problem.
+
+If we have been using that API for our own services, realistic solution would be to import the movies list to our database, implement daily/weekly sync, and then sort movies using our own database. That's also recommened solution by API author.
+
+For this test project, because of this issue, I would be just retrieving first 250 movies from the api and then sort those movies manually using vuex getters.
+
+<br>
+
+
 # Explanation for architecture decisions
 
 ## Docker

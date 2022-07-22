@@ -9,7 +9,8 @@
     "@typescript-eslint/consistent-type-imports": "error",
     "class-methods-use-this": "off",
     "no-console": "off",
-    "prefer-destructuring": "off"
+    "prefer-destructuring": "off",
+    "no-use-before-define": ["error", {"functions": false, "classes": false}]
   },
   "parserOptions": {
     "project": "./tsconfig.json",
