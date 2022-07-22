@@ -9,12 +9,13 @@
     },
     "esModuleInterop": true,
     "resolveJsonModule": true,
-    "target": "es5",
+    "target": "es6",
     "module": "esnext",
     "jsx": "preserve",
     "moduleResolution": "node",
     "importHelpers": true,
-    "importsNotUsedAsValues": "error"
+    "importsNotUsedAsValues": "error",
+    "experimentalDecorators": true
   },
   "include": ["src/**/*.ts", "src/**/*.vue", "src/**/*.json"],
   "exclude": ["node_modules", "**/*.test.ts"]

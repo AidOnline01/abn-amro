@@ -6,7 +6,10 @@
   ],
   "rules": {
     "vue/script-indent": ["error", 2, { "baseIndent": 1 }],
-    "@typescript-eslint/consistent-type-imports": "error"
+    "@typescript-eslint/consistent-type-imports": "error",
+    "class-methods-use-this": "off",
+    "no-console": "off",
+    "prefer-destructuring": "off"
   },
   "parserOptions": {
     "project": "./tsconfig.json",

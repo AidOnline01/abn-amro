@@ -21,3 +21,12 @@ Typescript is used to prevent typing error, and enforce better self-documenting 
 
 ## Eslint
 Eslint is used to enforce same code style across the project.
+
+## Vuex
+Vuex is used for shared state and data management across the application. 
+
+To provide better structure and architecture to the app data. 
+
+And to persist some state for page reload. 
+
+**vuex-module-decorators** are used for ensuring typesafety of modules state, mutations, and actions. 
