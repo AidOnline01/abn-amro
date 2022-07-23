@@ -16,6 +16,7 @@
   body, html {
     padding: 0;
     margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
   }
 
   :root {
@@ -23,6 +24,12 @@
     --color-danger: #d73d3d;
     --color-danger-medium: #f7a2a2;
     --color-danger-light: #fdecec;
+    --color-main: #ff424f;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
   }
 
   .container {

@@ -1,28 +1,31 @@
 <template>
   <div class="movies-page">
-    <div class="loading" data-test-id="loading" v-if="loading">
-      Loading movies
-    </div>
+    <div class="container">
 
-    <div class="genres" data-test-id="genres" v-else-if="Object.keys(genres).length">
-      <template v-for="genre in genres" :key="genre">
-        <div class="genre">
-          <div class="genre-name" data-test-id="genre-name">{{genre}}</div>
-          <div class="movies-items" ref="itemsEls">
-            <div
-              class="movies-item"
-              v-for="(movie, index) in genresMoviesLimited[genre]"
-              :key="index"
-              data-test-id="movies-item"
-            >
-              <MoviesCard :movie="movie" />
+      <div class="loading" data-test-id="loading" v-if="loading">
+        Loading movies
+      </div>
+
+      <div class="genres" data-test-id="genres" v-else-if="Object.keys(genres).length">
+        <template v-for="genre in genres" :key="genre">
+          <div class="genre">
+            <div class="genre-name" data-test-id="genre-name">{{genre}}</div>
+            <div class="movies-items" ref="itemsEls">
+              <div
+                class="movies-item"
+                v-for="(movie, index) in genresMoviesLimited[genre]"
+                :key="index"
+                data-test-id="movies-item"
+              >
+                <MoviesCard :movie="movie" />
+              </div>
             </div>
           </div>
-        </div>
-      </template>
-    </div>
+        </template>
+      </div>
 
-    <div class="not-found" data-test-id="not-found" v-else>No film was found</div>
+      <div class="not-found" data-test-id="not-found" v-else>No film was found</div>
+    </div>
   </div>
 </template>
 
