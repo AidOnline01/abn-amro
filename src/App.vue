@@ -20,6 +20,9 @@
 
   :root {
     --color-grey: #e2e5f1;
+    --color-danger: #d73d3d;
+    --color-danger-medium: #f7a2a2;
+    --color-danger-light: #fdecec;
   }
 
   .container {

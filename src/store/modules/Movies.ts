@@ -22,11 +22,9 @@ export default class Movies extends VuexModule {
       });
     });
 
-    // TODO: sorting
-
-    // Object.keys(map).forEach((genre) => {
-    //   map[genre] = map[genre].sort((a, b) => a.weight - b.weight);
-    // });
+    Object.keys(map).forEach((genre) => {
+      map[genre] = map[genre].sort((a, b) => b.weight - a.weight);
+    });
 
     return map;
   }

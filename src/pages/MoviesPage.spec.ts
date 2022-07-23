@@ -1,55 +1,141 @@
 import { mount } from '@vue/test-utils';
+import type { VueWrapper } from '@vue/test-utils';
 import flushPromises from 'flush-promises';
 import store from '@/store';
 import { API_URL } from '@/api';
+import { randomBetween } from '@/helpers/math';
 import MoviesPage from './MoviesPage.vue';
 import type Movie from '@/types/Movie';
 
-const mockMovies: Movie[] = [
-  {
-    id: 1,
-    name: 'Movie name',
-    genres: ['Comedy', 'Triller'],
-    image: {
-      medium: '',
-      original: '',
-    },
-    slug: 'movie-name',
-    weight: 25,
+const baseMovie: Movie = {
+  id: 1,
+  name: 'Movie',
+  genres: ['Comedy', 'Drama'],
+  image: {
+    original: '',
+    medium: '',
   },
-  {
-    id: 2,
-    name: 'Movie name 2',
-    genres: ['Horror', 'Triller'],
-    image: {
-      medium: '',
-      original: '',
+  slug: 'movie',
+  weight: 55,
+};
+
+function generateMoviesWithGenres(genres: Record<string, number>): Movie[] {
+  const movies: Movie[] = [];
+  let id = 0;
+
+  Object.keys(genres).forEach((genresString) => {
+    const genresList = genresString.split('-');
+    const count = genres[genresString];
+
+    for (let i = 0; i < count; i += 1) {
+      id += 1;
+
+      const movie: Movie = { ...baseMovie, id, genres: genresList };
+
+      movies.push(movie);
+    }
+  });
+
+  return movies;
+}
+
+function generateUnorderedMovies(count: number): Movie[] {
+  const movies: Movie[] = [];
+  let id = 0;
+
+  for (let i = 0; i < count; i += 1, id += 1) {
+    if (i === Math.ceil(count / 2)) {
+      movies.push({
+        ...baseMovie,
+        id,
+        name: 'Top Movie',
+        genres: ['Comedy'],
+        weight: 95,
+      });
+    } else {
+      movies.push({
+        ...baseMovie,
+        id,
+        genres: ['Comedy'],
+        weight: randomBetween(1, 80),
+      });
+    }
+  }
+
+  return movies;
+}
+
+async function getWrapper(movies: Movie[], delay = 0): Promise<VueWrapper> {
+  const axios = global.mockAdapter.onGet(`${API_URL}/shows`);
+
+  if (delay > 0) {
+    axios.reply(() => new Promise((resolve) => {
+      setTimeout(() => {
+        resolve([200, movies]);
+      }, delay);
+    }));
+  } else axios.reply(200, movies);
+
+  const wrapper = mount(MoviesPage, {
+    global: {
+      provide: {
+        store,
+      },
+      stubs: {
+        'router-link': true,
+      },
     },
-    slug: 'movie-2',
-    weight: 55,
-  },
-];
+  });
+
+  await flushPromises();
+
+  return wrapper;
+}
 
 describe('MoviesPage', () => {
-  it('Renders the genres and movies', async () => {
-    global.mockAdapter.onGet(`${API_URL}/shows`).reply(200, mockMovies);
-
-    const wrapper = mount(MoviesPage, {
-      global: {
-        provide: {
-          store,
-        },
-        stubs: {
-          'router-link': true,
-        },
-      },
+  it('should render the genres and movies', async () => {
+    const mockMovies = generateMoviesWithGenres({
+      Comedy: 3,
+      Drama: 5,
+      Triller: 3,
+      'Comedy-Drama': 2,
     });
 
-    await flushPromises();
+    const wrapper = await getWrapper(mockMovies);
 
-    expect(wrapper.text()).toMatch(/comedy/i);
-    expect(wrapper.text()).toMatch(/horror/i);
+    expect(wrapper.findAll('[data-test-id="genre-name"]').some((el) => el.text().match(/comedy/i))).toBe(true);
+    expect(wrapper.findAll('[data-test-id="genre-name"]').some((el) => el.text().match(/triller/i))).toBe(true);
+    expect(wrapper.findAll('[data-test-id="movies-item"]').length).toBe(15);
+  });
 
-    expect(wrapper.text()).toMatch(/movie name 2/i);
+  it('should sort movies by order', async () => {
+    const mockMovies = generateUnorderedMovies(5);
+
+    const wrapper = await getWrapper(mockMovies);
+
+    expect(wrapper.findAll('[data-test-id="movies-item"]')[0].find('[data-test-id="movie-name"]').text()).toMatch(/top movie/i);
+  });
+
+  it('should render maximum 10 items per genre', async () => {
+    const mockMovies = generateMoviesWithGenres({
+      Comedy: 15,
+      'Comedy-Drama': 25,
+    });
+
+    const wrapper = await getWrapper(mockMovies);
+
+    expect(wrapper.findAll('[data-test-id="movies-item"]').length).toBe(20);
+  });
+
+  it('should show not found error', async () => {
+    const wrapper = await getWrapper([]);
+
+    expect(wrapper.find('[data-test-id="not-found"]').exists()).toBe(true);
+  });
+
+  it('should show loading screen', async () => {
+    const wrapper = await getWrapper([], 1000);
+
+    expect(wrapper.find('[data-test-id="loading"]').exists()).toBe(true);
   });
 });

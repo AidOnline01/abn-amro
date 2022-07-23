@@ -17,6 +17,9 @@ If we have been using that API for our own services, realistic solution would be
 
 For this test project, because of this issue, I would be just retrieving first 250 movies from the api and then sort those movies manually using vuex getters.
 
+## Popularity
+To sort movies by popularity I have used `weight` property instead of `rating`, because `rating` property is not present on all the movies, and `weight` is used by the twmaze.com themselves to sort movies by popularity (https://www.tvmaze.com/threads/3416/query-for-accurate-popular-shows-weight). 
+
 <br>
 
 

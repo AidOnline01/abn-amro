@@ -5,12 +5,13 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const EslintPlugin = require('eslint-webpack-plugin');
 
 module.exports = {
-  mode: 'development',
+  mode: process.env.production ? 'production' : 'development',
   entry: {
     app: './src/app.ts',
   },
   devServer: {
     historyApiFallback: true,
+    allowedHosts: 'all'
   },
   output: {
     path: path.resolve(__dirname, '../dist/js'),
