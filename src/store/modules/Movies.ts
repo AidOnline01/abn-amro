@@ -49,26 +49,16 @@ export default class Movies extends VuexModule {
     this.movie = movie;
   }
 
-  @Action
+  @Action({ rawError: true })
   async loadMovies(): Promise<Movie[]> {
     const movies = await api('shows') as Movie[];
 
     return movies;
   }
 
-  @Action
-  loadMovie(): Movie {
-    const movie: Movie = {
-      id: 1,
-      genres: ['comedy', 'drama'],
-      name: 'TestMovie',
-      slug: 'test-1-movie',
-      weight: 10,
-      image: {
-        medium: 'https://medium.img',
-        original: 'https://large.img',
-      },
-    };
+  @Action({ rawError: true })
+  async loadMovie(id: number): Promise<Movie> {
+    const movie = await api(`shows/${id}`) as Movie;
 
     return movie;
   }

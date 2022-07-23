@@ -25,6 +25,9 @@
     --color-danger-medium: #f7a2a2;
     --color-danger-light: #fdecec;
     --color-main: #ff424f;
+    --color-blue: #06b0fb;
+    --color-purple: #bb06fc;
+    --color-yellow: #fbb006;
   }
 
   a {

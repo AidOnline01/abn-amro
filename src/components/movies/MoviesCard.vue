@@ -7,7 +7,7 @@
     <div class="info" data-info>
       <div class="title" data-test-id="movie-name">{{movie.name}}</div>
 
-      <router-link class="link" :to="'/movie/' + movie.slug">Details</router-link>
+      <router-link class="link" :to="'/movie/' + movie.id">Details</router-link>
     </div>
   </div>
 </template>
@@ -53,12 +53,17 @@
   }
 
   .info {
-    padding: 10px;
+    padding: 15px 10px;
   }
 
   .title {
     font-weight: 700;
     font-size: 20px;
     margin-bottom: 10px;
+  }
+
+  .link {
+    font-size: 18px;
+    color: var(--color-blue);
   }
 </style>

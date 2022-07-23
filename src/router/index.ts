@@ -11,7 +11,7 @@ const routes: RouteRecordRaw[] = [
     component: MoviesPage,
   },
   {
-    path: '/movie',
+    path: '/movie/:id',
     name: 'MoviePage',
     component: MoviePage,
   },

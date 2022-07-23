@@ -4,6 +4,7 @@ import flushPromises from 'flush-promises';
 import store from '@/store';
 import { API_URL } from '@/api';
 import { randomBetween } from '@/helpers/math';
+import mockAxios from '@/tests/mockAxios';
 import MoviesPage from './MoviesPage.vue';
 import type Movie from '@/types/Movie';
 
@@ -15,8 +16,9 @@ const baseMovie: Movie = {
     original: '',
     medium: '',
   },
-  slug: 'movie',
   weight: 55,
+  language: 'English',
+  summary: '<p>The description of the Movie',
 };
 
 function generateMoviesWithGenres(genres: Record<string, number>): Movie[] {
@@ -66,15 +68,7 @@ function generateUnorderedMovies(count: number): Movie[] {
 }
 
 async function getWrapper(movies: Movie[], delay = 0): Promise<VueWrapper> {
-  const axios = global.mockAdapter.onGet(`${API_URL}/shows`);
-
-  if (delay > 0) {
-    axios.reply(() => new Promise((resolve) => {
-      setTimeout(() => {
-        resolve([200, movies]);
-      }, delay);
-    }));
-  } else axios.reply(200, movies);
+  mockAxios(`${API_URL}/shows`, movies, delay);
 
   const wrapper = mount(MoviesPage, {
     global: {
