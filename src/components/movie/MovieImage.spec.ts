@@ -19,7 +19,7 @@ function getWrapper(movie: Movie): VueWrapper {
   return wrapper;
 }
 
-describe('MoviesImage', () => {
+describe('MovieImage', () => {
   it('should render image', async () => {
     const mockMovie: Movie = { ...baseMovie };
 

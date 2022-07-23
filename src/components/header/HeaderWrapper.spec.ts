@@ -7,7 +7,7 @@ function getWrapper(): VueWrapper {
   const wrapper = shallowMount(HeaderWrapper, {
     global: {
       stubs: {
-        'router-link': true
+        'router-link': true,
       },
     },
   });
@@ -15,7 +15,7 @@ function getWrapper(): VueWrapper {
   return wrapper;
 }
 
-describe('MoviesImage', () => {
+describe('HeaderWrapper', () => {
   it('should render search', async () => {
     const wrapper = getWrapper();
 

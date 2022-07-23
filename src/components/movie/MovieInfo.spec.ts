@@ -14,7 +14,7 @@ function getWrapper(movie: Movie): VueWrapper {
   return wrapper;
 }
 
-describe('MoviesImage', () => {
+describe('MovieInfo', () => {
   it('should render rating', async () => {
     const mockMovie: Movie = { ...baseMovie, rating: { average: 8 } };
 

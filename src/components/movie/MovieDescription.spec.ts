@@ -14,7 +14,7 @@ function getWrapper(movie: Movie): VueWrapper {
   return wrapper;
 }
 
-describe('MoviesImage', () => {
+describe('MovieDescription', () => {
   it('should render description', async () => {
     const mockMovie: Movie = { ...baseMovie };
 

@@ -22,7 +22,7 @@ function getWrapper(src: string): VueWrapper {
   return wrapper;
 }
 
-describe('MoviesCard', () => {
+describe('LazyImage', () => {
   it('should render image', async () => {
     const src = 'https://website.com/image.png';
 

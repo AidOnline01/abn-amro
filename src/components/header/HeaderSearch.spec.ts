@@ -41,7 +41,7 @@ function generateResults(): Result[] {
   return results;
 }
 
-describe('MoviesImage', () => {
+describe('HeaderSearch', () => {
   it('should render results', async () => {
     const mockResults = generateResults();
 
