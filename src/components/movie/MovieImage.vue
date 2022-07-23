@@ -5,9 +5,18 @@
       data-test-id="movie-image"
       :style="`background-image: url(${movie.image.original})`"
     ></div>
-    <MovieInfo :movie="movie" />
 
-    <router-link class="back" to="/">&lt;- Go back</router-link>
+    <div class="wrapper">
+      <div class="back">
+        <div class="container">
+          <router-link class="back-link" to="/">&lt;- Go back</router-link>
+        </div>
+      </div>
+
+      <div class="container">
+        <MovieInfo :movie="movie" class="movie-info" />
+      </div>
+    </div>
   </div>
 </template>
 
@@ -28,6 +37,21 @@
 </script>
 
 <style lang="scss" scoped>
+  .wrapper {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .container {
+    margin-top: auto;
+    width: 100%;
+  }
+
   .image {
     position: relative;
     padding-bottom: 110%;
@@ -44,14 +68,24 @@
   }
 
   .back {
-    display: block;
     position: absolute;
+    width: 100%;
+    left: 0;
+    top: 10px;
+  }
+
+  .back-link {
+    display: inline-block;
     left: 10px;
     top: 10px;
     border-radius: 10px;
     padding: 10px;
     background: var(--color-blue);
     color: #fff;
+  }
+
+  .movie-info {
+    margin-bottom: 10px;
   }
 
   @media (min-width: 400px) {

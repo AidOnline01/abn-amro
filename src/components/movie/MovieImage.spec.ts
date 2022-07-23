@@ -23,7 +23,7 @@ describe('MoviesImage', () => {
   it('should render image', async () => {
     const mockMovie: Movie = { ...baseMovie };
 
-    const wrapper = await getWrapper(mockMovie);
+    const wrapper = getWrapper(mockMovie);
 
     const imageEl = wrapper.find('[data-test-id="movie-image"]');
 

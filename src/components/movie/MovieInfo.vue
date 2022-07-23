@@ -1,32 +1,30 @@
 <template>
   <div class="info">
-    <div class="container">
-      <div class="title" data-test-id="movie-title">
-        {{movie.name}}
+    <div class="title" data-test-id="movie-title">
+      {{movie.name}}
+    </div>
+
+    <div class="labels">
+      <!-- Genres -->
+      <div
+        class="label label--genre"
+        v-for="genre in movie.genres"
+        :key="genre"
+        data-test-id="movie-genre"
+      >{{genre}}</div>
+
+      <!-- Language -->
+      <div class="label label--rating" data-test-id="movie-language">
+        {{movie.language}}
       </div>
 
-      <div class="labels">
-        <!-- Genres -->
-        <div
-          class="label label--genre"
-          v-for="genre in movie.genres"
-          :key="genre"
-          data-test-id="movie-genre"
-        >{{genre}}</div>
-
-        <!-- Language -->
-        <div class="label label--rating" data-test-id="movie-language">
-          {{movie.language}}
-        </div>
-
-        <!-- Rating -->
-        <div
-          class="label label--rating"
-          data-test-id="movie-rating"
-          v-if="movie.rating && movie.rating.average"
-        >
-          {{movie.rating.average}} of 10
-        </div>
+      <!-- Rating -->
+      <div
+        class="label label--rating"
+        data-test-id="movie-rating"
+        v-if="movie.rating && movie.rating.average"
+      >
+        {{movie.rating.average}} of 10
       </div>
     </div>
   </div>
@@ -49,13 +47,9 @@
 
 <style lang="scss" scoped>
   .info {
-    position: absolute;
     background: rgba(0, 0, 0, 0.7);
-    left: 10px;
-    right: 10px;
-    bottom: 20px;
     color: #fff;
-    padding: 10px 0;
+    padding: 10px 15px;
     min-height: 70px;
     border-radius: 10px;
   }

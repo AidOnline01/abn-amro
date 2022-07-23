@@ -8,7 +8,7 @@
 
 <script lang="ts" setup>
   import { useRoute, onBeforeRouteLeave, onBeforeRouteUpdate } from 'vue-router';
-  import { computed, onMounted } from 'vue';
+  import { computed, onMounted, watch } from 'vue';
   import { useStore } from 'vuex';
   import { getModule } from 'vuex-module-decorators';
   import Movies from '@/store/modules/Movies';
@@ -26,6 +26,7 @@
   const route = useRoute();
 
   onMounted(() => fetchMovie());
+  watch(() => route.params.id, () => fetchMovie());
 
   onBeforeRouteLeave(() => clearState());
   onBeforeRouteUpdate(() => clearState());

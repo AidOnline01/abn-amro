@@ -1,6 +1,6 @@
 <template>
   <div class="main-layout">
-    <LayoutHeader />
+    <HeaderWrapper />
 
     <slot />
 
@@ -9,7 +9,7 @@
 </template>
 
 <script lang="ts" setup>
-  import LayoutHeader from '@/components/layout/LayoutHeader.vue';
+  import HeaderWrapper from '@/components/header/HeaderWrapper.vue';
   import LayoutFooter from '@/components/layout/LayoutFooter.vue';
 </script>
 

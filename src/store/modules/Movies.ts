@@ -11,6 +11,8 @@ export default class Movies extends VuexModule {
 
   movie: Movie | null = null;
 
+  searchMovies: Movie[] = [];
+
   get getGenresMovies(): Record<string, Array<Movie>> {
     const map = {};
 
@@ -61,5 +63,17 @@ export default class Movies extends VuexModule {
     const movie = await api(`shows/${id}`) as Movie;
 
     return movie;
+  }
+
+  @Action({ rawError: true })
+  async loadSearch(query: string): Promise<Movie[]> {
+    const results = await api(`search/shows?q=${query}`) as Array<{
+      score: number,
+      show: Movie
+    }>;
+
+    const movies = results.map((result) => result.show);
+
+    return movies;
   }
 }
