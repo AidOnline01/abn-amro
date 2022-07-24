@@ -62,6 +62,6 @@ For optimization I have implemented several techniques, such as:
 1. **Lazy rendering of movies blocks**
 
 If we need to optimize futher, I would recommend also to:
-1. Implement Server Side Rendering or PreRendering (If movies would be pretty static) to decrease
+1. Implement Server Side Rendering or Pre-Rendering
 1. Load images to our server and serve them in Webp format (for older browsers jpg, we can set rule in nginx/apache for that)
 1. We can also use CDN, it will futher decrease time to load of image, because of automatic Webp serving and optimal servers location for the end user.
