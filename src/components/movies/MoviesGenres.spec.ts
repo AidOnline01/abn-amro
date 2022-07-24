@@ -1,3 +1,4 @@
+import { nextTick } from 'vue';
 import type { Store } from 'vuex';
 import { createStore } from 'vuex';
 import type { State } from '@/store';
@@ -7,6 +8,7 @@ import baseMovie from '@/tests/baseMovie';
 import { getModule } from 'vuex-module-decorators';
 import Movies from '@/store/modules/Movies';
 import MoviesGenres from './MoviesGenres.vue';
+import MoviesGenre from './MoviesGenre.vue';
 import type Movie from '@/types/Movie';
 
 function generateMoviesWithGenres(genres: Record<string, number>): Movie[] {
@@ -29,7 +31,10 @@ function generateMoviesWithGenres(genres: Record<string, number>): Movie[] {
   return movies;
 }
 
-function getWrapper(genres: string[], genresMovies: Record<string, Movie[]>): VueWrapper {
+async function getWrapper(
+  genres: string[],
+  genresMovies: Record<string, Movie[]>,
+): Promise<VueWrapper> {
   const wrapper = shallowMount(MoviesGenres, {
     global: {
       stubs: {
@@ -41,6 +46,8 @@ function getWrapper(genres: string[], genresMovies: Record<string, Movie[]>): Vu
       genresMovies,
     },
   });
+
+  await nextTick();
 
   return wrapper;
 }
@@ -59,7 +66,7 @@ describe('MoviesGenres', () => {
     module = getModule(Movies, store);
   });
 
-  it('should render the genres and movies', () => {
+  it('should render MoviesGenre', async () => {
     const mockMovies = generateMoviesWithGenres({
       Comedy: 3,
       Drama: 5,
@@ -69,23 +76,8 @@ describe('MoviesGenres', () => {
 
     module.setMovies(mockMovies);
 
-    const wrapper = getWrapper(module.getGenres, module.getGenresMovies);
+    const wrapper = await getWrapper(module.getGenres, module.getGenresMovies);
 
-    expect(wrapper.findAll('[data-test-id="genre-name"]').some((el) => el.text().match(/comedy/i))).toBe(true);
-    expect(wrapper.findAll('[data-test-id="genre-name"]').some((el) => el.text().match(/triller/i))).toBe(true);
-    expect(wrapper.findAll('[data-test-id="movies-item"]').length).toBe(15);
-  });
-
-  it('should render maximum 10 items per genre', () => {
-    const mockMovies = generateMoviesWithGenres({
-      Comedy: 15,
-      'Comedy-Drama': 25,
-    });
-
-    module.setMovies(mockMovies);
-
-    const wrapper = getWrapper(module.getGenres, module.getGenresMovies);
-
-    expect(wrapper.findAll('[data-test-id="movies-item"]').length).toBe(20);
+    expect(wrapper.findAllComponents(MoviesGenre).length).toBe(3);
   });
 });
