@@ -29,4 +29,24 @@ describe('MovieImage', () => {
 
     expect((imageEl.element as HTMLElement).style.backgroundImage).toBe(`url(${mockMovie.image.original})`);
   });
+
+  it('should render without image', async () => {
+    const mockMovie: Movie = { ...baseMovie, image: null };
+
+    const wrapper = getWrapper(mockMovie);
+
+    const imageEl = wrapper.find('[data-test-id="movie-image"]');
+
+    expect(imageEl.exists()).toBe(true);
+  });
+
+  it('should render without original image', async () => {
+    const mockMovie: Movie = { ...baseMovie, image: { } };
+
+    const wrapper = getWrapper(mockMovie);
+
+    const imageEl = wrapper.find('[data-test-id="movie-image"]');
+
+    expect(imageEl.exists()).toBe(true);
+  });
 });

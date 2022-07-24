@@ -1,7 +1,7 @@
 import { shallowMount } from '@vue/test-utils';
 import type { VueWrapper } from '@vue/test-utils';
 import flushPromises from 'flush-promises';
-import store from '@/store';
+import createStore from '@/store';
 import { API_URL } from '@/api';
 import mockAxios from '@/tests/mockAxios';
 import baseMovie from '@/tests/baseMovie';
@@ -19,7 +19,7 @@ async function getWrapper(movies: Movie[], delay = 0): Promise<VueWrapper> {
   const wrapper = shallowMount(MoviesPage, {
     global: {
       provide: {
-        store,
+        store: createStore(),
       },
       stubs: {
         'router-link': true,

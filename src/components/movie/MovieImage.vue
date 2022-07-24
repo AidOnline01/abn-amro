@@ -3,7 +3,11 @@
     <div
       class="image-inner"
       data-test-id="movie-image"
-      :style="`background-image: url(${movie.image.original})`"
+      :style="`background-image: url(${
+        (movie.image && movie.image.original)
+          ? movie.image.original
+          : '/images/placeholder.png'
+      })`"
     ></div>
 
     <div class="wrapper">

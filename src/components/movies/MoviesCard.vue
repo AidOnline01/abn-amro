@@ -1,7 +1,9 @@
 <template>
   <div class="movies-card">
     <div class="image">
-      <LazyImage :src="movie.image.medium" />
+      <LazyImage
+        :src="(movie.image && movie.image.medium) ? movie.image.medium : '/images/placeholder.png'"
+      />
     </div>
 
     <div class="info" data-info>

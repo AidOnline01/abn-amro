@@ -21,7 +21,7 @@ function getWrapper(movie: Movie): VueWrapper {
 }
 
 describe('MoviesCard', () => {
-  it('should render title', async () => {
+  it('should render title', () => {
     const movie: Movie = { ...baseMovie, name: 'Shrek' };
 
     const wrapper = getWrapper(movie);
@@ -29,8 +29,24 @@ describe('MoviesCard', () => {
     expect(wrapper.find('[data-test-id="movie-name"]').text()).toMatch(/shrek/i);
   });
 
-  it('should render image', async () => {
+  it('should render image', () => {
     const movie: Movie = { ...baseMovie };
+
+    const wrapper = getWrapper(movie);
+
+    expect(wrapper.findComponent(LazyImage).exists()).toBe(true);
+  });
+
+  it('should render without image', () => {
+    const movie: Movie = { ...baseMovie, image: undefined };
+
+    const wrapper = getWrapper(movie);
+
+    expect(wrapper.findComponent(LazyImage).exists()).toBe(true);
+  });
+
+  it('should render without medium image', () => {
+    const movie: Movie = { ...baseMovie, image: { original: '/image.png' } };
 
     const wrapper = getWrapper(movie);
 

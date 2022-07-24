@@ -1,13 +1,13 @@
 import { shallowMount } from '@vue/test-utils';
 import type { VueWrapper } from '@vue/test-utils';
-import store from '@/store';
+import createStore from '@/store';
 import LazyImage from './LazyImage.vue';
 
 function getWrapper(src: string): VueWrapper {
   const wrapper = shallowMount(LazyImage, {
     global: {
       provide: {
-        store,
+        store: createStore(),
       },
       stubs: {
         'router-link': true,

@@ -50,6 +50,8 @@
 
   const loading = ref(true);
   async function fetchMovie() {
+    loading.value = true;
+
     const loadedMovie = await loadMovie(+route.params.id);
 
     setMovie(loadedMovie);
@@ -59,6 +61,12 @@
   function clearState() {
     setMovie(null);
   }
+</script>
+
+<script lang="ts">
+  export default {
+    name: 'MoviePage',
+  };
 </script>
 
 <style lang="scss" scoped>

@@ -7,10 +7,12 @@ export interface State {
   movies: MoviesState,
 }
 
-const store = createStore<State>({
-  modules: {
-    movies,
-  },
-});
+export default () => {
+  const store = createStore<State>({
+    modules: {
+      movies,
+    },
+  });
 
-export default store;
+  return store;
+};

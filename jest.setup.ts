@@ -29,9 +29,3 @@ window.IntersectionObserver = class MockObserver {
 
   takeRecords = jest.fn();
 };
-
-jest.mock('vue-router', () => ({
-  useRoute: () => jest.fn(),
-  onBeforeRouteUpdate: jest.fn(),
-  onBeforeRouteLeave: jest.fn(),
-}));

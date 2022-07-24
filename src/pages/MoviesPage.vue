@@ -54,6 +54,12 @@
   }
 </script>
 
+<script lang="ts">
+  export default {
+    name: 'MoviesPage',
+  };
+</script>
+
 <style lang="scss" scoped>
   .movies-page {
     padding: 10px 0;

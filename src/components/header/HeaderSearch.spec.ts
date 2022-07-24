@@ -4,7 +4,7 @@ import type { VueWrapper } from '@vue/test-utils';
 import mockAxios from '@/tests/mockAxios';
 import baseMovie from '@/tests/baseMovie';
 import { API_URL } from '@/api';
-import store from '@/store';
+import createStore from '@/store';
 import HeaderSearch from './HeaderSearch.vue';
 import type Movie from '@/types/Movie';
 
@@ -25,7 +25,7 @@ function getWrapper(results: Result[]): VueWrapper {
   const wrapper = shallowMount(HeaderSearch, {
     global: {
       provide: {
-        store,
+        store: createStore(),
       },
       stubs: {
         'router-link': RouterLinkStub,

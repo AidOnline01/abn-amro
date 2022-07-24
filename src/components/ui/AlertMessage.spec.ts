@@ -1,6 +1,5 @@
 import { shallowMount } from '@vue/test-utils';
 import type { VueWrapper } from '@vue/test-utils';
-import store from '@/store';
 import AlertMessage from './AlertMessage.vue';
 
 function getWrapper(message: string): VueWrapper {
