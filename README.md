@@ -5,7 +5,7 @@
 4. Build containers `docker-compose build --no-cache`
 5. Run containers `docker-compose up -d --force-recreate`
 6. Enter docker console `docker exec -it abn_movies_app /bin/bash`
-7. Run Webpack Dev Server `npm run dev`
+7. Run Webpack Dev Server `npm run serve`
 8. Access website by url `http://localhost:8080` 
 
 # Notice

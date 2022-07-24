@@ -46,7 +46,7 @@
   "version": "1.0.0",
   "scripts": {
     "build": "webpack --config build/webpack.config.js --env production",
-    "serve": "webpack --config build/webpack.config.js --env production",
+    "serve": "webpack serve --config build/webpack.config.js --env production",
     "dev": "webpack serve --config build/webpack.config.js",
     "lint": "eslint './src/**'",
     "test:unit": "jest --watch src",
