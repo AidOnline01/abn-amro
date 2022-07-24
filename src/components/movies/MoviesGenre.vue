@@ -36,14 +36,6 @@
 </script>
 
 <style lang="scss" scoped>
-  .genre {
-    margin-bottom: 20px;
-
-    &:last-child {
-      margin-bottom: 0;
-    }
-  }
-
   .genre-name {
     font-size: 20px;
     font-weight: 700;
