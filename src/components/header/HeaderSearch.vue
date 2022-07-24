@@ -101,7 +101,11 @@
     .results {
       width: 300px;
       left: auto;
-      right: 15px;
+      right: 0;
+    }
+
+    .search {
+      position: relative;
     }
   }
 </style>
