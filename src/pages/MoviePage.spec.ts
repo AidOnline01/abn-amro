@@ -1,5 +1,5 @@
 import VueRouter from 'vue-router';
-import { mount } from '@vue/test-utils';
+import { shallowMount } from '@vue/test-utils';
 import type { VueWrapper } from '@vue/test-utils';
 import flushPromises from 'flush-promises';
 import store from '@/store';
@@ -23,7 +23,7 @@ async function getWrapper(movie: Movie | boolean, delay = 0): Promise<VueWrapper
     });
   }
 
-  const wrapper = mount(MoviePage, {
+  const wrapper = shallowMount(MoviePage, {
     global: {
       provide: {
         store,

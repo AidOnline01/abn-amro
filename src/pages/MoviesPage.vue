@@ -6,23 +6,11 @@
         <AlertMessage message="Loading movies..." type="info"></AlertMessage>
       </div>
 
-      <div class="genres" data-test-id="genres" v-else-if="Object.keys(genres).length">
-        <template v-for="genre in genres" :key="genre">
-          <div class="genre">
-            <div class="genre-name" data-test-id="genre-name">{{genre}}</div>
-            <div class="movies-items" ref="itemsEls">
-              <div
-                class="movies-item"
-                v-for="(movie, index) in genresMoviesLimited[genre]"
-                :key="index"
-                data-test-id="movies-item"
-              >
-                <MoviesCard :movie="movie" />
-              </div>
-            </div>
-          </div>
-        </template>
-      </div>
+      <MoviesGenres
+        :genres="genres"
+        :genresMovies="genresMovies"
+        v-else-if="Object.keys(genres).length"
+      />
 
       <div v-else data-test-id="not-found" class="not-found">
         <AlertMessage message="Not found" />
@@ -35,12 +23,11 @@
   import { getModule } from 'vuex-module-decorators';
   import Movies from '@/store/modules/Movies';
   import { useStore } from 'vuex';
-  import MoviesCard from '@/components/movies/MoviesCard.vue';
   import {
     computed, ref, onBeforeUpdate,
   } from 'vue';
   import AlertMessage from '@/components/ui/AlertMessage.vue';
-  import type Movie from '@/types/Movie';
+  import MoviesGenres from '@/components/movies/MoviesGenres.vue';
 
   const store = useStore();
 
@@ -50,8 +37,6 @@
 
   const genres = computed(() => moviesModule.getGenres);
   const genresMovies = computed(() => moviesModule.getGenresMovies);
-
-  const genresMoviesLimited = computed(() => sliceMovies(10));
 
   fetchMovies();
 
@@ -67,52 +52,11 @@
     setMovies(loadedMovies);
     loading.value = false;
   }
-
-  function sliceMovies(limit: number) {
-    const map: Record<string, Array<Movie>> = {};
-
-    Object.keys(genresMovies.value).forEach((genre) => {
-      map[genre] = genresMovies.value[genre].slice(0, limit);
-    });
-
-    return map;
-  }
 </script>
 
 <style lang="scss" scoped>
   .movies-page {
     padding: 10px 0;
-  }
-
-  .genre {
-    margin-bottom: 20px;
-
-    &:last-child {
-      margin-bottom: 0;
-    }
-  }
-
-  .genre-name {
-    font-size: 20px;
-    font-weight: 700;
-    margin-bottom: 15px;
-  }
-
-  .movies-items {
-    display: flex;
-    flex-shrink: 0;
-    max-width: 100%;
-    overflow-x: auto;
-  }
-
-  .movies-item {
-    flex-shrink: 0;
-    margin-right: 10px;
-    width: 240px;
-
-    &:last-child {
-      margin-right: 0;
-    }
   }
 
   .loading, .not-found {

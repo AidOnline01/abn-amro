@@ -4,7 +4,7 @@ import type { MoviesState } from './modules/Movies';
 import movies from './modules/Movies';
 
 export interface State {
-  movies: MoviesState
+  movies: MoviesState,
 }
 
 const store = createStore<State>({
