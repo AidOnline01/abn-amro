@@ -47,6 +47,7 @@
     flex-shrink: 0;
     max-width: 100%;
     overflow-x: auto;
+    padding-bottom: 15px;
   }
 
   .movies-item {

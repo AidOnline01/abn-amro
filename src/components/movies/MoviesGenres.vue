@@ -61,7 +61,6 @@
 <style lang="scss" scoped>
   .wrap {
     min-height: 380px;
-    padding-bottom: 20px;
     margin-bottom: 20px;
 
     &:last-child {
