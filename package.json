@@ -49,7 +49,9 @@
     "serve": "webpack --config build/webpack.config.js --env production",
     "dev": "webpack serve --config build/webpack.config.js",
     "lint": "eslint './src/**'",
-    "test:unit": "jest --watch src"
+    "test:unit": "jest --watch src",
+    "jest": "jest --watch",
+    "ts": "tsc --noEmit"
   },
   "repository": {
     "type": "git",

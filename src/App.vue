@@ -26,10 +26,13 @@
     --color-danger-light: #fdecec;
     --color-main: #ff424f;
     --color-main-light: #ff858d;
-    --color-blue: #06b0fb;
     --color-purple: #bb06fc;
     --color-yellow: #fbb006;
     --color-light-grey: #c0c0c0;
+
+    --color-blue: #4475de;
+    --color-blue-light: #edf3fe;
+    --color-blue-medium: #a6c1fb;
   }
 
   a {

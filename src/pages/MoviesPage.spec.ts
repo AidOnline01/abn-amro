@@ -5,21 +5,9 @@ import store from '@/store';
 import { API_URL } from '@/api';
 import { randomBetween } from '@/helpers/math';
 import mockAxios from '@/tests/mockAxios';
+import baseMovie from '@/tests/baseMovie';
 import MoviesPage from './MoviesPage.vue';
 import type Movie from '@/types/Movie';
-
-const baseMovie: Movie = {
-  id: 1,
-  name: 'Movie',
-  genres: ['Comedy', 'Drama'],
-  image: {
-    original: '',
-    medium: '',
-  },
-  weight: 55,
-  language: 'English',
-  summary: '<p>The description of the Movie',
-};
 
 function generateMoviesWithGenres(genres: Record<string, number>): Movie[] {
   const movies: Movie[] = [];
@@ -68,7 +56,11 @@ function generateUnorderedMovies(count: number): Movie[] {
 }
 
 async function getWrapper(movies: Movie[], delay = 0): Promise<VueWrapper> {
-  mockAxios(`${API_URL}/shows`, movies, delay);
+  mockAxios({
+    url: `${API_URL}/shows`,
+    data: movies,
+    delay,
+  });
 
   const wrapper = mount(MoviesPage, {
     global: {

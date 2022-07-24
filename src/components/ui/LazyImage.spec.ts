@@ -1,11 +1,10 @@
-import { mount } from '@vue/test-utils';
+import { shallowMount } from '@vue/test-utils';
 import type { VueWrapper } from '@vue/test-utils';
 import store from '@/store';
 import LazyImage from './LazyImage.vue';
-import type Movie from '@/types/Movie';
 
 function getWrapper(src: string): VueWrapper {
-  const wrapper = mount(LazyImage, {
+  const wrapper = shallowMount(LazyImage, {
     global: {
       provide: {
         store,

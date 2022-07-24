@@ -1,3 +1,4 @@
+import axios from 'axios';
 import {
   VuexModule, Module, Mutation, Action,
 } from 'vuex-module-decorators';
@@ -5,13 +6,19 @@ import {
 import api from '@/api';
 import type Movie from '@/types/Movie';
 
+export interface MoviesState {
+  movie: Movie,
+  movies: Movie[],
+  searchMovies: Movie[]
+}
+
 @Module({ namespaced: true, name: 'movies' })
-export default class Movies extends VuexModule {
-  movies: Movie[] = [];
+export default class Movies extends VuexModule implements MoviesState {
+  movies = [];
 
-  movie: Movie | null = null;
+  movie = null;
 
-  searchMovies: Movie[] = [];
+  searchMovies = [];
 
   get getGenresMovies(): Record<string, Array<Movie>> {
     const map = {};
@@ -59,18 +66,28 @@ export default class Movies extends VuexModule {
   }
 
   @Action({ rawError: true })
-  async loadMovie(id: number): Promise<Movie> {
-    const movie = await api(`shows/${id}`) as Movie;
+  async loadMovie(id: number): Promise<Movie | null> {
+    try {
+      const movie = await api(`shows/${id}`) as Movie;
 
-    return movie;
+      return movie;
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        if (+error.code === 404) return null;
+      } else throw error;
+    }
+
+    return null;
   }
 
   @Action({ rawError: true })
-  async loadSearch(query: string): Promise<Movie[]> {
-    const results = await api(`search/shows?q=${query}`) as Array<{
+  async loadSearch(query: string): Promise<Movie[] | null> {
+    interface Result {
       score: number,
       show: Movie
-    }>;
+    }
+
+    const results = await api('search/shows', { q: query }) as Result[];
 
     const movies = results.map((result) => result.show);
 

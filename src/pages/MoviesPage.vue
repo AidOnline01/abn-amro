@@ -3,7 +3,7 @@
     <div class="container">
 
       <div class="loading" data-test-id="loading" v-if="loading">
-        Loading movies
+        <AlertMessage message="Loading movies..." type="info"></AlertMessage>
       </div>
 
       <div class="genres" data-test-id="genres" v-else-if="Object.keys(genres).length">
@@ -24,7 +24,9 @@
         </template>
       </div>
 
-      <div class="not-found" data-test-id="not-found" v-else>No film was found</div>
+      <div v-else data-test-id="not-found" class="not-found">
+        <AlertMessage message="Not found" />
+      </div>
     </div>
   </div>
 </template>
@@ -37,6 +39,7 @@
   import {
     computed, ref, onBeforeUpdate,
   } from 'vue';
+  import AlertMessage from '@/components/ui/AlertMessage.vue';
   import type Movie from '@/types/Movie';
 
   const store = useStore();
@@ -112,13 +115,7 @@
     }
   }
 
-  .not-found {
-    background: var(--color-danger-light);
-    border: 1px solid var(--color-danger-medium);
-    color: var(--color-danger);
-    padding: 20px;
-    border-radius: 10px;
-    width: 100%;
-    font-size: 20px;
+  .loading, .not-found {
+    padding: 20px 0;
   }
 </style>

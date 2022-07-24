@@ -1,4 +1,3 @@
-import { nextTick } from 'vue';
 import flushPromises from 'flush-promises';
 import { shallowMount, RouterLinkStub } from '@vue/test-utils';
 import type { VueWrapper } from '@vue/test-utils';
@@ -14,8 +13,14 @@ interface Result {
   show: Movie
 }
 
-async function getWrapper(results: Result[]): Promise<VueWrapper> {
-  mockAxios(`${API_URL}/search/shows?q=Shrek`, results);
+function getWrapper(results: Result[]): VueWrapper {
+  mockAxios({
+    url: `${API_URL}/search/shows`,
+    data: results,
+    params: {
+      q: 'Shrek',
+    },
+  });
 
   const wrapper = shallowMount(HeaderSearch, {
     global: {
@@ -45,7 +50,7 @@ describe('HeaderSearch', () => {
   it('should render results', async () => {
     const mockResults = generateResults();
 
-    const wrapper = await getWrapper(mockResults);
+    const wrapper = getWrapper(mockResults);
 
     await wrapper.find('[name="search"]').setValue('Shrek');
 
